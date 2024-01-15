@@ -27,10 +27,11 @@ LIMIT 1;
 --83	Музыка	64000.00
 
  --   Сколько «Черепах» купила Williams Linda?
-select c.last_name, c.first_name, p.product , opl.amount 
+select c.last_name, c.first_name, p.product , sum(opl.amount)
 from customer c
 join orders o on c.customer_id = o.customer_id
 join order_product_list opl on o.order_id = opl.order_id 
 join product p on opl.product_id = p.product_id 
 where (c.last_name = 'Williams' and c.first_name = 'Linda') and p.product = 'Черепаха'
+group by c.last_name, c.first_name, p.product
 --Williams	Linda	Черепаха	3.00
