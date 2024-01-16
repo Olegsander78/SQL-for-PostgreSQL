@@ -24,6 +24,14 @@ SELECT order_id , customer_id , amount ,
 	sum(amount) OVER (PARTITION BY customer_id ORDER BY order_id) 
 FROM orders o 
 
+--Категория товара с наибольшим процентным отношение количества товаров от общего количества товаров.
+--Какова процентная доля у этой категории? 
+SELECT DISTINCT c.category_id , SUM(p.remains) OVER (PARTITION BY c.category_id) /  (SELECT SUM(p2.remains) FROM product p2) t
+FROM category c 
+JOIN product p ON p.category_id  = c.category_id  
+ORDER BY t DESC
+LIMIT 1
+
 -- ПРЕДСТАВЛЕНИЯ
 
 --нужно постоянно получать данные по последнему заказу пользователя
