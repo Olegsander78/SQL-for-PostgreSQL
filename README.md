@@ -1,2 +1,2 @@
 # SQL-for-PostgreSQL
- HW for Netology 
+ SQL Foundation
